@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Vehicle Tracking & Theft Prevention System | Command Center</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS for Interactive Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="logo">
+                <span class="pulse-icon">📡</span>
+                <h1>IoT Vehicle Security Command Center</h1>
+            </div>
+            <div class="status-banner" id="system-status-banner">
+                <span class="status-indicator"></span>
+                <span id="status-text">CONNECTING TO VEHICLE...</span>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Grid -->
+        <main class="dashboard-grid">
+            <!-- Left Column: Map & Simulation Controls -->
+            <section class="card map-section">
+                <div class="card-header">
+                    <h2>Live GPS Trajectory & Geofence Monitor</h2>
+                    <a id="google-maps-link" href="#" target="_blank" class="btn btn-secondary">Open Google Maps ↗</a>
+                </div>
+                <div id="map"></div>
+                
+                <!-- Simulation Control Panel -->
+                <div class="control-panel">
+                    <h3>Simulation Command Triggers</h3>
+                    <div class="button-group">
+                        <button class="btn btn-normal" onclick="triggerSimulation('normal')">🚗 Normal Driving</button>
+                        <button class="btn btn-parked" onclick="triggerSimulation('parked')">🔒 Park & Arm</button>
+                        <button class="btn btn-theft" onclick="triggerSimulation('theft')">🚨 Simulate Theft Attempt</button>
+                        <button class="btn btn-geofence" onclick="triggerSimulation('geofence')">⚠️ Simulate Geofence Breach</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Telemetry & Actuator Status -->
+            <section class="stats-column">
+                <!-- Telemetry Metrics -->
+                <div class="card metrics-card">
+                    <div class="metric-item">
+                        <span class="metric-label">Latitude / Longitude</span>
+                        <span class="metric-value font-mono" id="coords-val">0.000000, 0.000000</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Vehicle Velocity</span>
+                        <span class="metric-value" id="speed-val">0.0 <small>km/h</small></span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Geofence Distance</span>
+                        <span class="metric-value" id="dist-val">0.0 <small>m</small></span>
+                    </div>
+                </div>
+
+                <!-- Hardware Actuator & Security Status -->
+                <div class="card security-card">
+                    <h2>Hardware Actuator Indicators</h2>
+                    <div class="actuator-grid">
+                        <div class="actuator-item" id="ind-ignition">
+                            <span class="actuator-title">Ignition Circuit</span>
+                            <span class="actuator-state">ACTIVE</span>
+                        </div>
+                        <div class="actuator-item" id="ind-armed">
+                            <span class="actuator-title">Security State</span>
+                            <span class="actuator-state">DISARMED</span>
+                        </div>
+                        <div class="actuator-item" id="ind-buzzer">
+                            <span class="actuator-title">Piezo Buzzer</span>
+                            <span class="actuator-state">SILENT</span>
+                        </div>
+                        <div class="actuator-item" id="ind-relay">
+                            <span class="actuator-title">Engine Immobilizer</span>
+                            <span class="actuator-state">NORMAL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Chart -->
+                <div class="card chart-card">
+                    <h2>Live Speed & Geofence Telemetry</h2>
+                    <canvas id="telemetryChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

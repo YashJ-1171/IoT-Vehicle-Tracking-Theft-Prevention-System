@@ -1,0 +1,12 @@
+Component,Component_Pin,ESP32_Pin,Wire_Color,Voltage,Function
+NEO-6M GPS Module,VCC,3V3,Red,3.3V,Power Supply
+NEO-6M GPS Module,GND,GND,Black,0V,Common Ground
+NEO-6M GPS Module,TX,GPIO 16 (RX2),Blue,3.3V UART,GPS NMEA Data Out to ESP32
+NEO-6M GPS Module,RX,GPIO 17 (TX2),Green,3.3V UART,GPS Configuration Data In
+Active Piezo Buzzer,Anode (+),GPIO 25,Yellow,3.3V Logic,Acoustic Alarm Trigger
+Active Piezo Buzzer,Cathode (-),GND,Black,0V,Common Ground
+Green Status LED,Anode (+),GPIO 26,Green,3.3V Logic via 220R,Normal/Armed OK Indicator
+Red Status LED,Anode (+),GPIO 27,Red,3.3V Logic via 220R,Theft/Geofence Breach Alarm Indicator
+5V Relay Module,Signal IN,GPIO 33,Orange,3.3V Logic,Engine Immobilizer Control Signal
+5V Relay Module,VCC,VIN (5V),Red,5V,Relay Coil Power Supply
+5V Relay Module,GND,GND,Black,0V,Common Ground

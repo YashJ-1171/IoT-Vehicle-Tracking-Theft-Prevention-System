@@ -1,0 +1,9 @@
+.git
+.gitignore
+README.md
+docs/
+circuit_diagram/
+arduino_code/
+outputs/
+*.pdf
+*.md

@@ -1,0 +1,6 @@
+# IoT Vehicle Tracking & Theft Prevention System - Python Dependencies
+flask>=2.3.0
+reportlab>=4.0.0
+requests>=2.31.0
+gunicorn>=21.2.0; sys_platform != 'win32'
+waitress>=2.1.2; sys_platform == 'win32'
